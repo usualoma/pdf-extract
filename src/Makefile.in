@@ -59,6 +59,10 @@ CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 CXXLD = $(CXX)
 CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
 	-o $@
+COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
+	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+CCLD = $(CC)
+LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 SOURCES = $(pdf_extract_outline_SOURCES)
 DIST_SOURCES = $(pdf_extract_outline_SOURCES)
 ETAGS = etags
@@ -159,7 +163,9 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-pdf_extract_outline_SOURCES = pdf-extract.cc pdf-extract-outline.cc
+pdf_extract_outline_SOURCES = pdf-extract.cc pdf-extract.h \
+							  pdf-extract-outline.cc
+
 pdf_extract_outline_LDADD = $(GLIB_LIBS)
 AM_CPPFLAGS = $(GLIB_CFLAGS)
 all: all-am
