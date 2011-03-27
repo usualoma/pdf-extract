@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.68)
-AC_INIT(pdf-extract, 0.0.2, taku@toi-planning.net)
+AC_INIT(pdf-extract, 0.0.3, taku@toi-planning.net)
 AM_INIT_AUTOMAKE([foreign])
 AC_CONFIG_SRCDIR([src/pdf-extract-outline.cc])
 AC_CONFIG_HEADERS([config.h])
