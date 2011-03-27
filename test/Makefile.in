@@ -32,7 +32,8 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-noinst_PROGRAMS = pdf-extract-outline_test$(EXEEXT)
+@HAVE_LIBGTEST_TRUE@noinst_PROGRAMS =  \
+@HAVE_LIBGTEST_TRUE@	pdf-extract-outline_test$(EXEEXT)
 subdir = test
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -44,12 +45,14 @@ CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 PROGRAMS = $(noinst_PROGRAMS)
-am_pdf_extract_outline_test_OBJECTS = pdf-extract.$(OBJEXT) \
-	pdf-extract-outline_test.$(OBJEXT)
+am__pdf_extract_outline_test_SOURCES_DIST =  \
+	$(top_srcdir)/src/pdf-extract.cc pdf-extract-outline_test.cc
+@HAVE_LIBGTEST_TRUE@am_pdf_extract_outline_test_OBJECTS =  \
+@HAVE_LIBGTEST_TRUE@	pdf-extract.$(OBJEXT) \
+@HAVE_LIBGTEST_TRUE@	pdf-extract-outline_test.$(OBJEXT)
 pdf_extract_outline_test_OBJECTS =  \
 	$(am_pdf_extract_outline_test_OBJECTS)
-am__DEPENDENCIES_1 =
-pdf_extract_outline_test_DEPENDENCIES = $(am__DEPENDENCIES_1)
+pdf_extract_outline_test_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -60,7 +63,7 @@ CXXLD = $(CXX)
 CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
 	-o $@
 SOURCES = $(pdf_extract_outline_test_SOURCES)
-DIST_SOURCES = $(pdf_extract_outline_test_SOURCES)
+DIST_SOURCES = $(am__pdf_extract_outline_test_SOURCES_DIST)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -86,8 +89,6 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
-GLIB_CFLAGS = @GLIB_CFLAGS@
-GLIB_LIBS = @GLIB_LIBS@
 GREP = @GREP@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
@@ -109,9 +110,6 @@ PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
-PKG_CONFIG = @PKG_CONFIG@
-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
@@ -159,9 +157,8 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-pdf_extract_outline_test_SOURCES = $(top_srcdir)/src/pdf-extract.cc pdf-extract-outline_test.cc
-pdf_extract_outline_test_LDADD = $(GLIB_LIBS) -lgtest
-AM_CPPFLAGS = $(GLIB_CFLAGS) -I$(top_srcdir)/src
+@HAVE_LIBGTEST_TRUE@pdf_extract_outline_test_SOURCES = $(top_srcdir)/src/pdf-extract.cc pdf-extract-outline_test.cc
+@HAVE_LIBGTEST_TRUE@AM_CPPFLAGS = -I$(top_srcdir)/src
 all: all-am
 
 .SUFFIXES:
@@ -436,12 +433,15 @@ uninstall-am:
 	uninstall-am
 
 
-.PHONY: test
+@HAVE_LIBGTEST_TRUE@.PHONY: test
 
-test: $(PROGRAMS)
-	for program in $(PROGRAMS); do \
-		./$$program; \
-	done
+@HAVE_LIBGTEST_TRUE@test: $(PROGRAMS)
+@HAVE_LIBGTEST_TRUE@	for program in $(PROGRAMS); do \
+@HAVE_LIBGTEST_TRUE@		./$$program; \
+@HAVE_LIBGTEST_TRUE@	done
+
+@HAVE_LIBGTEST_FALSE@all:
+@HAVE_LIBGTEST_FALSE@	@echo "Can't find Google Test http://code.google.com/p/googletest/"
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

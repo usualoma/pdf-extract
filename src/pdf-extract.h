@@ -1,3 +1,9 @@
-#include <glib.h>
+#include <string>
+#include <vector>
 
-GSList* pdf_extract_outline(char *filename);
+namespace pdf_extract {
+    using std::string;
+    using std::vector;
+
+    vector<string*>* outline(string filename);
+}

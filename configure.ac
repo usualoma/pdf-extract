@@ -11,16 +11,23 @@ AC_CONFIG_HEADERS([config.h])
 AC_PROG_CXX
 
 # Checks for libraries.
-PKG_PROG_PKG_CONFIG
-PKG_CHECK_MODULES(GLIB, glib-2.0)
+AC_CHECK_LIB([gtest], [main])
+AM_CONDITIONAL(HAVE_LIBGTEST, test x$ac_cv_lib_gtest_main = xyes)
+AC_CHECK_LIB([poppler], [main], , [AC_MSG_ERROR([Can not find poppler.])])
 
 # Checks for header files.
-AC_CHECK_LIB(poppler, [c; char c; int main], , [AC_MSG_ERROR([Can not find poppler.])])
+AC_CHECK_HEADER(
+                [poppler/poppler-config.h],
+                ,
+                [AC_MSG_ERROR([Can not find "poppler/poppler-config.h".])]
+                )
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_HEADER_STDBOOL
 
 # Checks for library functions.
 
-AC_CONFIG_FILES([Makefile src/Makefile test/Makefile])
+AC_CONFIG_FILES([Makefile
+                 src/Makefile
+                 test/Makefile])
 AC_OUTPUT

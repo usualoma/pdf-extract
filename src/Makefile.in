@@ -48,8 +48,7 @@ PROGRAMS = $(bin_PROGRAMS)
 am_pdf_extract_outline_OBJECTS = pdf-extract.$(OBJEXT) \
 	pdf-extract-outline.$(OBJEXT)
 pdf_extract_outline_OBJECTS = $(am_pdf_extract_outline_OBJECTS)
-am__DEPENDENCIES_1 =
-pdf_extract_outline_DEPENDENCIES = $(am__DEPENDENCIES_1)
+pdf_extract_outline_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -90,8 +89,6 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
-GLIB_CFLAGS = @GLIB_CFLAGS@
-GLIB_LIBS = @GLIB_LIBS@
 GREP = @GREP@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
@@ -113,9 +110,6 @@ PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
-PKG_CONFIG = @PKG_CONFIG@
-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
@@ -166,8 +160,6 @@ top_srcdir = @top_srcdir@
 pdf_extract_outline_SOURCES = pdf-extract.cc pdf-extract.h \
 							  pdf-extract-outline.cc
 
-pdf_extract_outline_LDADD = $(GLIB_LIBS)
-AM_CPPFLAGS = $(GLIB_CFLAGS)
 all: all-am
 
 .SUFFIXES:
