@@ -3,6 +3,7 @@
 #include "pdf-extract.h"
 
 #include <poppler/PDFDoc.h>
+#include <poppler/PDFDocFactory.h>
 #include <poppler/UnicodeMap.h>
 #include <poppler/goo/GooList.h>
 #include <poppler/Outline.h>
@@ -40,14 +41,14 @@ namespace pdf_extract {
 
     static PDFDoc* new_pdf_doc(string filename) {
         GooString filename_g(filename.c_str());
-        return new PDFDoc(&filename_g, 0, 0);
+        return PDFDocFactory().createPDFDoc(filename_g);
     }
 
     vector<string*>* outline(string filename) {
         vector<string*> *titles = new vector<string*>();
 
         PDFDoc *doc = new_pdf_doc(filename);
-        if (doc->getErrorCode()) {
+        if (! doc->isOk()) {
             return titles;
         }
 
@@ -63,7 +64,7 @@ namespace pdf_extract {
             titles->push_back(title);
         }
 
-//        delete doc;
+        delete doc;
 
         return titles;
     }
