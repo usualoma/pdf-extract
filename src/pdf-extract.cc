@@ -63,6 +63,8 @@ namespace pdf_extract {
             titles->push_back(title);
         }
 
+//        delete doc;
+
         return titles;
     }
 }
