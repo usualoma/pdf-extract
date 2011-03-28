@@ -6,4 +6,4 @@ categories      graphics
 depends_lib     port:poppler
 
 master_sites    https://github.com/downloads/usualoma/pdf-extract/
-checksums       md5 cd28a19e720496f1e76c2b3e4efa703a
+checksums       md5 4d0aea42442855130329117f895baa5b
