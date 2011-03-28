@@ -1,6 +1,6 @@
 PortSystem      1.0
 name            pdf-extract
-version         0.0.4
+version         0.0.5
 categories      graphics
 
 depends_lib     port:poppler
