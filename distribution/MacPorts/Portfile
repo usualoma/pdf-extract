@@ -1,9 +1,9 @@
 PortSystem      1.0
 name            pdf-extract
-version         0.0.5
+version         0.0.6
 categories      graphics
 
 depends_lib     port:poppler
 
 master_sites    https://github.com/downloads/usualoma/pdf-extract/
-checksums       md5 4d0aea42442855130329117f895baa5b
+checksums       md5 c994486907b52b527bdbe0da128480a4
