@@ -55,6 +55,10 @@ namespace pdf_extract {
         Outline *outline = doc->getOutline();
         GooList *items   = outline->getItems();
 
+        if (! items) {
+            return titles;
+        }
+
         for (int i = 0, len = items->getLength(); i < len; i++) {
             OutlineItem *item = (OutlineItem*)items->get(i);
             Unicode *unicode  = item->getTitle();
